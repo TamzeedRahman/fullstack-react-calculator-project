@@ -1,25 +1,92 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react"
+import Display from "./Components/Display"
+import Buttons from "./Components/Buttons"
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import "./App.css"
+
+export class App extends Component {
+  constructor(){
+    super()
+
+    this.state = {
+      calculatorScreenValue: 0,
+      ourLastValueNum: null,
+      operation: ""
+    }
+  
+  }
+  
+  resetAndClearFunc = () => {
+    this.setState({ 
+      calculatorScreenValue: 0, 
+      ourLastValueNum: null, 
+      operation: "" 
+    })
+  }
+  
+  positiveNegativeFunc = () =>{
+    this.setState({ 
+      calculatorScreenValue: this.state.calculatorScreenValue * -1
+    })
+  }
+
+  ourAnswerFunc = () => {
+    if(this.state.operation === "+"){
+      this.setState({ 
+        calculatorScreenValue: 
+        this.state.ourLastValueNum + this.state.calculatorScreenValue 
+      })
+    } else if(this.state.operation === "-"){
+      this.setState({ 
+        calculatorScreenValue: 
+        this.state.ourLastValueNum - this.state.calculatorScreenValue
+      })
+    } else if(this.state.operation === "x"){
+      this.setState({ 
+        calculatorScreenValue: 
+        this.state.ourLastValueNum * this.state.calculatorScreenValue
+      })
+    } else if(this.state.operation === "/"){
+      this.setState({ 
+        calculatorScreenValue: 
+        Math.round(this.state.ourLastValueNum / this.state.calculatorScreenValue)
+      })
+    }
+  }
+
+  operationManagerFunc = (e) => {
+    this.setState( (prevState) => ({ 
+      ourLastValueNum: prevState.calculatorScreenValue, 
+      calculatorScreenValue: "", 
+      operation: e.target.value
+    }))
+  }
+
+  displayFunc = (e) => {
+    this.setState({ 
+      calculatorScreenValue: 
+      Number(String(this.state.calculatorScreenValue).concat(e.target.value))
+    })
+  }
+
+  render() {
+    return (
+      <section>
+        <div className="calculator">
+          <Display 
+          calculatorScreenValue={this.state.calculatorScreenValue} 
+          />
+          <Buttons 
+          displayFunc={this.displayFunc} 
+          positiveNegativeFunc={this.positiveNegativeFunc} 
+          resetAndClearFunc={this.resetAndClearFunc} 
+          operationManagerFunc={this.operationManagerFunc} 
+          ourAnswerFunc={this.ourAnswerFunc}
+          />
+        </div>
+      </section>
+    )
+  }
 }
 
-export default App;
+export default App
