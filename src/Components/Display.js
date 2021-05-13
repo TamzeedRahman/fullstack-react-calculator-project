@@ -1,6 +1,8 @@
 import React, { Component } from "react"
 import "./Display.css"
 
+
+// This might be better suited as a functional component since it doesn't use state or lifecycle methods
 export class Display extends Component {
 constructor() {
   super()
