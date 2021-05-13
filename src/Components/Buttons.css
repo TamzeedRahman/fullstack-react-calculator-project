@@ -1,3 +1,8 @@
+/* 
+Nice use of grid. 
+If you work more on this, consider adding styles that differentiate 
+number buttons from operation buttons.
+*/
 .buttons {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
