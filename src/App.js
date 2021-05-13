@@ -57,7 +57,7 @@ export class App extends Component {
   operationManagerFunc = (e) => {
     this.setState( (prevState) => ({ 
       ourLastValueNum: prevState.calculatorScreenValue, 
-      calculatorScreenValue: "", 
+      calculatorScreenValue: "", // The initial value of calculatorScreenValue was 0. Could you use 0 here too?
       operation: e.target.value
     }))
   }
