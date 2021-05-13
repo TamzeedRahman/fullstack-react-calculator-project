@@ -11,6 +11,9 @@ function Buttons(props) {
     ourAnswerFunc 
   } = props
 
+  // consider re-writing your return statement using .map to render all of your number buttons.
+  // that way, if you ever make a change to how the buttons work, you only have to change the .map callback
+  // instead of changing all 10 buttons individually.
   return (
     <>
       <div className="buttons">

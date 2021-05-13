@@ -57,6 +57,8 @@ export class App extends Component {
   operationManagerFunc = (e) => {
     this.setState( (prevState) => ({ 
       ourLastValueNum: prevState.calculatorScreenValue, 
+      // The initial value of calculatorScreenValue was 0. Could you use 0 here too?
+      // It's usually a good idea to use a single consistent data type for all values in state.
       calculatorScreenValue: "", 
       operation: e.target.value
     }))
